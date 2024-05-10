@@ -22,8 +22,27 @@
  * calcTileType(7, 7); // 'left'
  * ```
  * */
-export function calcTileType(index, boardSize) {
+export function calcTileType(index, boardSize) { // передаем индекс - ячейка поля, размер поля
   // TODO: ваш код будет тут
+  if (index === 0) {
+    return 'top-left';
+  } if (index === boardSize - 1) {
+    return 'top-right';
+  } if (index === boardSize * boardSize - 1) {
+    return 'bottom-right';
+  } if (index === boardSize * boardSize - boardSize) {
+    return 'bottom-left';
+  } if (index < boardSize - 1) {
+    return 'top';
+  } if (index > boardSize * boardSize - boardSize && index < boardSize * boardSize - 1) {
+    return 'bottom';
+  } if ((index + 1) % boardSize === 0) {
+    return 'right';
+  } if (index % boardSize === 0 && index < boardSize * boardSize) {
+    return 'left';
+  } if (index >= boardSize * boardSize) {
+    throw new Error('Данный индекс не является клеткой доски');
+  }
   return 'center';
 }
 
